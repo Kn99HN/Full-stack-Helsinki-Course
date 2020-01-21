@@ -4,7 +4,7 @@ import Note from './components/Note'
 const App = (props) => {
   const [showAll, setShowAll] = useState(true)
   const [notes, setNotes] = useState(props.notes)
-  
+
   //if showall is false, we filter the important one
   const notesToShow = showAll
                 ? notes
