@@ -17,3 +17,4 @@ This repository tracks my progress to learn Full-stack with React and NodeJs
 9.  [x] Part 2b - Exercises
 10. [ ] Part 2c - Getting data from Server
 11. [ ] Writing Notes Markdown for each section to review
+12. [ ] Writing Notes about async, callback in JS.
