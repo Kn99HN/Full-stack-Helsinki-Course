@@ -1,10 +1,10 @@
-import React from 'react';
+import React,  { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import axios from 'axios'
-ReactDOM.render(<App />, document.getElementById('root'));
+import axios from 'axios';
+// import Note from './components/Note';
 
 /*
   A promise is an object representing the eventual
@@ -21,12 +21,32 @@ ReactDOM.render(<App />, document.getElementById('root'));
   3. The promise is rejected: It means that an error prevented the final value
   from being determined, which generally represents a failed operation.
 */
-const promise = axios.get("http://localhost:3001/notes")
+// const promise = axios.get("http://localhost:3001/notes")
 
-promise.then(response => {
-  console.log(response)
-})
+// The callback function now takes the data contained within
+// the response, stores it in a variable and prints the note
+// to the console
+// Axios is able to parse the data because it is formatted as
+// application/json and charset = utf-8
 
+// axios.get("http://localhost:3001/notes").then(response => {
+//   const notes = response.data
+//   console.log(notes)
+// })
+
+// axios.get("http://localhost:3001/notes").then(response => {
+//   const notes = response.data
+//   ReactDOM.render(
+//     <App notes = {notes} />,
+//     document.getElementById('root')
+//   )
+// }) -> BAD PRACTICE
+
+//Effect-hooks lets us perform side effects in function
+// component. Data fetching, setting up subscription, and
+// manually changing the DOM in React components are all
+// examples of side effects.
+ReactDOM.render(<App />, document.getElementById('root'))
 // const promise2 = axios.get('http://localhost:3001/foobar')
 // console.log(promise2)
 // If you want your app to work offline and load faster, you can change
