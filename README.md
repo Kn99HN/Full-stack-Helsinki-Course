@@ -15,6 +15,6 @@ This repository tracks my progress to learn Full-stack with React and NodeJs
 8.  [x] Part 2b - Building Form:
     1. "Single source of truth" with controlled component in React
 9.  [x] Part 2b - Exercises
-10. [ ] Part 2c - Getting data from Server
+10. [x] Part 2c - Getting data from Server
 11. [ ] Writing Notes Markdown for each section to review
 12. [ ] Writing Notes about async, callback in JS.
