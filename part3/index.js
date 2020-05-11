@@ -15,7 +15,10 @@ app.listen(port) */
 
 //Using Express
 const express = require('express')
+const cors = require('cors')
 const app = express()
+app.use(express.json()) //instantiate json parser
+app.use(cors())
 
 let notes =[
     {
@@ -38,7 +41,6 @@ let notes =[
     }
   ]
 
-app.use(express.json()) //instantiate json parser
 //defining routing and handler
 app.get('/', (req, res) => {
     res.send("<h1>Hello world </h1>")

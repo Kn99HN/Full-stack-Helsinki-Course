@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+const baseUrl = 'http://localhost:3001/api/notes'
 
 /*
   npm (node package manager): store/manage all the Javascript
@@ -15,7 +16,7 @@ const App = () => {
   //The function body is executed and the component is rendered
   // for the first time. At this point render 0 notes is printed
   // -> data hasn't been fetched from the server.
-  const hook = () => {
+  const hook = async () => {
     console.log('effect')
     // The function is executed immediately after rendering
     // The execution of the function results in effect
@@ -24,10 +25,12 @@ const App = () => {
     // and register response as the event handler
     // -> When data arrives, JS runtime calls the function
     // event handler -> re-render the components
-    axios.get('http://localhost:3001/notes').then(response => {
-      console.log('promise fullfilled')
-      setNotes(response.data)
-    })
+    // axios.get('http://localhost:3001/notes').then(response => {
+    //   console.log('promise fullfilled')
+    //   setNotes(response.data)
+    // })
+      const request = axios.get(baseUrl)
+      request.then(response => setNotes(response.data))
   }
 
   //Take 2 parameters, the hook, which is a function
