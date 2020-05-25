@@ -1,7 +1,6 @@
-POST http://localhost:3001/api/persons/
+DELETE  http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name" : "Khanh Nguyen",
-    "number": 3513551513
+    "id": "5ecc0090e8af032d1e1e3f2b"
 }

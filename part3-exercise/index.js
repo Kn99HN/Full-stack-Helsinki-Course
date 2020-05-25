@@ -1,30 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const Phone = require('./models/mongo')
 app.use(express.json())
 app.use(cors())
-let phones = [
-    { 
-      "name": "Arto Hellas", 
-      "number": "040-123456",
-      "id": 1
-    },
-    { 
-      "name": "Ada Lovelace", 
-      "number": "39-44-5323523",
-      "id": 2
-    },
-    { 
-      "name": "Dan Abramov", 
-      "number": "12-43-234345",
-      "id": 3
-    },
-    { 
-      "name": "Mary Poppendieck", 
-      "number": "39-23-6423122",
-      "id": 4
-    }
-  ]
 
 
 app.get('/', (req, res) => {
@@ -32,17 +12,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/persons', (req, res) => {
-    res.json(phones)
+    Phone.find({}).then(phones => {
+        res.json(phones)
+    })
 })
 
 app.get('/api/persons/:id', (req, res) => {
     const id = Number(req.params.id)
-    const person = phones.find(person => person.id === id)
-    if(person) {
-        res.json(person)
-    } else {
-        res.status(404).end()
-    }
+    Phone.find(id).then(phone => {
+        res.json(phone)
+    })
 })
 
 app.get('/info', (req, res) => {
@@ -73,20 +52,27 @@ app.post('/api/persons', (req, res) => {
         })
     }
 
-    const person = {
+    const person = new person({
         name: body.name,
         number: body.number,
         id: generateID()
-    }
+    })
 
-    phones = phones.concat(person)
-    res.json(phones)
+    person.save().then(savedPerson => {
+        res.json(savedPerson)
+    })
 })
 
 app.delete('/api/persons/:id', (req, res) => {
-    const id = Number(req.params.id)
-    phones = phones.filter(phone => phone.id !== id)
-    res.status(204).end()
+    const id = req.params.id
+    console.log(id)
+    Phone.findByIdAndDelete(id, (err, phone) => {
+        const respose = {
+            message: "Successfully deleted",
+            id: phone.id
+        }
+        res.status(200).send(respose)
+    })
 })
 
 const PORT = 3001
