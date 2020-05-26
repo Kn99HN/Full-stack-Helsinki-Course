@@ -1,22 +1,16 @@
 const mongoose = require('mongoose')
 
-const url = process.env.MONGODB_URI
-console.log('connecting to', url)
-// const url = 
-// `mongodb+srv://kn99hn:${password}@cluster0-yxygq.mongodb.net/note-app?retryWrites=true&w=majority`
-
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(result => {
-    console.log('connected to MongoDB')
-})
-.catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-})
-
-
+// validating at db level
 const noteSchema = new mongoose.Schema({
-    content: String,
-    date: Date,
+    content: {
+        type: String,
+        minlength: 5,
+        required: True
+    },
+    date: {
+        type: Date,
+        required: True
+    },
     important: Boolean
 })
 
@@ -30,6 +24,7 @@ noteSchema.set('toJSON', {
         delete returnedObject.__v
     }
 })
+
 
 //only Note models are public to other files
 module.exports = mongoose.model('Note', noteSchema)
