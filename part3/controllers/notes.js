@@ -75,9 +75,4 @@ notesRouter.delete('/:id', (req, res) => {
     .catch(error => next(error))
 })
 
-
-notesRouter.listen(PORT, () => {
-    console.log(`App is running on ${PORT}`)
-})
-
 module.exports = notesRouter
